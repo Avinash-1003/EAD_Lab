@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBIT Registration Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #000;
+        }
+        .header p {
+            font-size: 14px;
+            margin: 2px 0;
+            color: #555;
+        }
+        .header .contact-info {
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            flex: 0 0 150px; /* Fixed width for labels */
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .form-group .input-field {
+            flex-grow: 1;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .inline-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .inline-group > div {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .inline-group > div label {
+            flex: 0 0 80px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .inline-group > div .input-field {
+            flex-grow: 1;
+        }
+        .academic-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .academic-info .form-group {
+            margin-bottom: 0;
+        }
+        .fee-details {
+            margin-top: 20px;
+            border: 1px solid #eee;
+            padding: 15px;
+            background-color: #fdfdfd;
+        }
+        .fee-details .form-group {
+            margin-bottom: 10px;
+        }
+        .subject-table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+        .subject-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        .subject-table th, .subject-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            font-size: 13px;
+        }
+        .subject-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .note {
+            font-style: italic;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .remarks-section {
+            margin-top: 20px;
+        }
+        .remarks-section .form-group {
+            align-items: flex-start;
+        }
+        .signatures {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .signatures div {
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .signatures-row-2 {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            text-align: center;
+        }
+        .signatures-row-2 div {
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .academic-year-group, .date-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .academic-year-group label, .date-group label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .academic-year-group input, .date-group input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://www.cbit.ac.in/wp-content/uploads/2023/09/CBIT-LOGO.png" alt="logo", height="100px">
+            <h1>CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY</h1> 
+            <p>Chaitanya Bharathi P.O., Kokapet (V), Gandipet (M), Hyderabad - 500 075, Telangana State</p> 
+            <p class="contact-info">Phone No: 040-24193280;  Fax No: 040-24193278; Website: www.cbit.ac.in</p> 
+            <h2 class="section-title">ACADEMIC & EXAMINATION CELL</h2> 
+            <h1>REGISTRATION FORM</h1>
+        </div>
+
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="studentName">1. Name of the Student:</label>
+                <div class="input-field">
+                    <input type="text" id="studentName" name="studentName">
+                </div>
+            </div>
+
+            <div class="academic-info">
+                <div class="form-group">
+                    <label for="rollNo">2. Roll No.:</label>
+                    <div class="input-field">
+                        <input type="text" id="rollNo" name="rollNo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="branch">Branch:</label> 
+                    <div class="input-field">
+                        <input type="text" id="branch" name="branch">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="programmeName">3. Name of the Programme:</label>
+                <div class="input-field">
+                    <input type="text" id="programmeName" name="programmeName">
+                </div>
+            </div>
+
+            <div class="inline-group">
+                <div class="academic-year-group">
+                    <label for="academicYear">ACADEMIC YEAR:</label> 
+                    <input type="text" id="academicYear" name="academicYear">
+                </div>
+                <div class="form-group">
+                    <label for="semester">4. Semester:</label> 
+                    <div class="input-field">
+                        <input type="text" id="semester" name="semester">
+                    </div>
+                </div>
+            </div>
+
+            <div class="inline-group">
+                <div class="form-group">
+                    <label for="mobileNo">5. Mobile No.:</label>
+                    <div class="input-field">
+                        <input type="tel" id="mobileNo" name="mobileNo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="emailId">6. Email ID:</label> 
+                    <div class="input-field">
+                        <input type="email" id="emailId" name="emailId">
+                    </div>
+                </div>
+            </div>
+
+            <div class="date-group">
+                <label for="formDate">Date:</label> 
+                <input type="date" id="formDate" name="formDate">
+            </div>
+
+            <div class="section-title">7. Details of Annual Tuition Fee: (Attach Proofs for Payment)</div> 
+            <div class="fee-details">
+                <div class="form-group">
+                    <label for="feeStatus">a) Status of Tuition Fee Payment:</label> 
+                    <div class="input-field">
+                        <input type="text" id="feeStatus" name="feeStatus">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="feePaymentDate">b) Date of Fee Payment for the Current Academic Year:</label>
+                    <div class="input-field">
+                        <input type="date" id="feePaymentDate" name="feePaymentDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMode">c) Mode of Payment:</label>
+                    <div class="input-field">
+                        <input type="text" id="paymentMode" name="paymentMode">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="receiptNo">d) Receipt No. with date:</label>
+                    <div class="input-field">
+                        <input type="text" id="receiptNo" name="receiptNo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">8. Details of Subjects registering for:</div>
+            <div class="subject-table-container">
+                <table class="subject-table">
+                    <thead>
+                        <tr>
+                            <th>S. No.</th>
+                            <th>Course Code</th>
+                            <th>Name of the Course</th>
+                            <th>Core/Programme Elective / Open Elective / Project / Seminar</th>
+                            <th>Pursuing through Institute / MOOCS</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" name="sno_1" style="width: 40px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseCode_1" style="width: 80px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseName_1" style="width: 150px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseType_1" style="width: 150px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="pursuingThrough_1" style="width: 100px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="remarks_1" style="width: 100px; border: none; padding: 0;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="sno_2" style="width: 40px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseCode_2" style="width: 80px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseName_2" style="width: 150px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseType_2" style="width: 150px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="pursuingThrough_2" style="width: 100px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="remarks_2" style="width: 100px; border: none; padding: 0;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="sno_3" style="width: 40px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseCode_3" style="width: 80px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseName_3" style="width: 150px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="courseType_3" style="width: 150px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="pursuingThrough_3" style="width: 100px; border: none; padding: 0;"></td>
+                            <td><input type="text" name="remarks_3" style="width: 100px; border: none; padding: 0;"></td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="form-group">
+                <label for="table_semester">Semester:</label> 
+                <div class="input-field">
+                    <input type="text" id="table_semester" name="table_semester">
+                </div>
+            </div>
+
+            <p class="note">Note: Registration is not permitted with any fee due.</p> 
+
+            <div class="section-title">Remarks of Head of the Department:</div>
+            <div class="remarks-section">
+                <div class="form-group">
+                    <label for="feeDue">Fee Due, if any:</label>
+                    <div class="input-field">
+                        <input type="text" id="feeDue" name="feeDue">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hodRemarks">Remarks:</label>
+                    <div class="input-field">
+                        <textarea id="hodRemarks" name="hodRemarks" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="signatures">
+                <div>Name and Signature of the Mentor</div>
+                <div>Signature of the Student</div>
+            </div>
+
+            <div class="signatures-row-2">
+                <div>Signature of the HOD </div>
+                <div>DIRECTOR - AEC & COE ]</div>
+                <div>PRINCIPAL </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

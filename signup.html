@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBIT Sign Up</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://www.cbit.ac.in/wp-content/uploads/2019/01/ABOUT_TAB--scaled.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .signup-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      width: 340px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #1e7e34;
+    }
+    .links {
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .links a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="signup-box">
+  <h2>Create Account</h2>
+
+  <form action="login.html" method="get">
+    <input type="text" name="fullname" placeholder="Full Name" required>
+
+    <input type="email" name="email" placeholder="Email Address" required>
+
+    <input type="text" name="username" placeholder="Choose Username"
+           pattern="[A-Za-z0-9]{4,}" title="At least 4 characters" required>
+
+    <input type="password" name="password" placeholder="Create Password"
+           pattern=".{6,}" title="At least 6 characters" required>
+
+    <input type="password" name="confirm" placeholder="Confirm Password"
+           pattern=".{6,}" title="Re-enter your password" required>
+
+    <select name="department" required>
+      <option value="">Select Department</option>
+      <option value="IT">Information Technology</option>
+      <option value="CSE">Computer Science</option>
+      <option value="ECE">Electronics</option>
+      <option value="MECH">Mechanical</option>
+    </select>
+
+    <button type="submit">Sign Up</button>
+
+    <div class="links">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
