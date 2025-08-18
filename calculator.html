@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .calculator-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .calculator-button:active {
+            transform: scale(0.95);
+        }
+        /* Custom scrollbar for the display */
+        #display::-webkit-scrollbar {
+            height: 4px;
+        }
+        #display::-webkit-scrollbar-track {
+            background: #2d3748; /* gray-800 */
+        }
+        #display::-webkit-scrollbar-thumb {
+            background: #4a5568; /* gray-600 */
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-sm mx-auto bg-gray-800 rounded-2xl shadow-2xl p-6 space-y-6">
+        <!-- Display Screen -->
+        <div class="bg-gray-900 rounded-lg p-4 text-right overflow-x-auto">
+            <div id="history" class="text-gray-400 text-sm h-6"></div>
+            <input type="text" id="display" class="w-full bg-transparent text-4xl font-bold text-white border-none outline-none text-right" readonly>
+        </div>
+
+        <!-- Buttons Grid -->
+        <div class="grid grid-cols-4 gap-4">
+            <!-- Row 1 -->
+            <button onclick="clearDisplay()" class="calculator-button bg-red-500 hover:bg-red-600 text-white text-2xl font-bold rounded-lg h-16">C</button>
+            <button onclick="deleteLast()" class="calculator-button bg-gray-700 hover:bg-gray-600 text-white text-2xl font-bold rounded-lg h-16">DEL</button>
+            <button onclick="appendCharacter('%')" class="calculator-button bg-gray-700 hover:bg-gray-600 text-white text-2xl font-bold rounded-lg h-16">%</button>
+            <button onclick="appendCharacter('/')" class="calculator-button bg-yellow-500 hover:bg-yellow-600 text-white text-2xl font-bold rounded-lg h-16">÷</button>
+
+            <!-- Row 2 -->
+            <button onclick="appendCharacter('7')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">7</button>
+            <button onclick="appendCharacter('8')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">8</button>
+            <button onclick="appendCharacter('9')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">9</button>
+            <button onclick="appendCharacter('*')" class="calculator-button bg-yellow-500 hover:bg-yellow-600 text-white text-2xl font-bold rounded-lg h-16">×</button>
+
+            <!-- Row 3 -->
+            <button onclick="appendCharacter('4')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">4</button>
+            <button onclick="appendCharacter('5')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">5</button>
+            <button onclick="appendCharacter('6')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">6</button>
+            <button onclick="appendCharacter('-')" class="calculator-button bg-yellow-500 hover:bg-yellow-600 text-white text-2xl font-bold rounded-lg h-16">-</button>
+
+            <!-- Row 4 -->
+            <button onclick="appendCharacter('1')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">1</button>
+            <button onclick="appendCharacter('2')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">2</button>
+            <button onclick="appendCharacter('3')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">3</button>
+            <button onclick="appendCharacter('+')" class="calculator-button bg-yellow-500 hover:bg-yellow-600 text-white text-2xl font-bold rounded-lg h-16">+</button>
+
+            <!-- Row 5 -->
+            <button onclick="appendCharacter('0')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16 col-span-2">0</button>
+            <button onclick="appendCharacter('.')" class="calculator-button bg-gray-600 hover:bg-gray-500 text-white text-2xl font-bold rounded-lg h-16">.</button>
+            <button onclick="calculateResult()" class="calculator-button bg-green-500 hover:bg-green-600 text-white text-2xl font-bold rounded-lg h-16">=</button>
+        </div>
+    </div>
+
+    <script>
+        // Get display and history elements from the DOM
+        const display = document.getElementById('display');
+        const history = document.getElementById('history');
+        let currentExpression = '';
+        let lastResult = '';
+
+        // Function to append characters to the display
+        function appendCharacter(char) {
+            // Prevent multiple decimal points in a single number
+            const lastNumber = currentExpression.split(/[\+\-\*\/%]/).pop();
+            if (char === '.' && lastNumber.includes('.')) {
+                return;
+            }
+            
+            // Prevent starting with an operator (except '-')
+            if (currentExpression === '' && ['+', '*', '/', '%'].includes(char)) {
+                return;
+            }
+
+            // Replace the expression with the new character if the previous calculation resulted in an error
+            if (display.value === 'Error') {
+                 currentExpression = '';
+            }
+
+            currentExpression += char;
+            display.value = currentExpression;
+        }
+
+        // Function to clear the display and all variables
+        function clearDisplay() {
+            currentExpression = '';
+            lastResult = '';
+            display.value = '';
+            history.textContent = '';
+        }
+
+        // Function to delete the last character from the display
+        function deleteLast() {
+            if (display.value === 'Error') {
+                clearDisplay();
+                return;
+            }
+            currentExpression = currentExpression.slice(0, -1);
+            display.value = currentExpression;
+        }
+
+        // Function to calculate the result of the expression
+        function calculateResult() {
+            if (currentExpression === '') return;
+
+            try {
+                // Sanitize the expression to prevent security risks with eval
+                // Replace custom operators with standard ones
+                let sanitizedExpression = currentExpression.replace(/%/g, '/100*');
+                
+                // Use a safer evaluation method
+                const result = new Function('return ' + sanitizedExpression)();
+
+                if (isNaN(result) || !isFinite(result)) {
+                    throw new Error("Invalid calculation");
+                }
+
+                history.textContent = currentExpression + '=';
+                display.value = result;
+                lastResult = result.toString();
+                currentExpression = lastResult;
+
+            } catch (error) {
+                display.value = 'Error';
+                history.textContent = '';
+                currentExpression = ''; // Reset expression on error
+            }
+        }
+
+        // Add keyboard support for a better user experience
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+            if (key >= '0' && key <= '9' || key === '.') {
+                appendCharacter(key);
+            } else if (key === '+' || key === '-' || key === '*' || key === '/' || key === '%') {
+                appendCharacter(key);
+            } else if (key === 'Enter' || key === '=') {
+                event.preventDefault(); // Prevent form submission if inside a form
+                calculateResult();
+            } else if (key === 'Backspace') {
+                deleteLast();
+            } else if (key === 'Escape' || key.toLowerCase() === 'c') {
+                clearDisplay();
+            }
+        });
+    </script>
+
+</body>
+</html>
